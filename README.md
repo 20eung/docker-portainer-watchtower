@@ -99,3 +99,24 @@ $ cd /data/watchtower
 
 $ sudo docker-compose up -d
 ```
+
+## 5. 디렉토리 구조
+
+```
+/data
+├── portainer
+│   ├── bin
+│   ├── certs
+│   │   ├── cert.pem
+│   │   └── key.pem
+│   ├── compose
+│   ├── docker-compose.yml
+│   ├── docker_config
+│   │   └── config.json
+│   ├── portainer.db
+│   ├── portainer.key
+│   ├── portainer.pub
+│   └── tls
+└── watchtower
+    └── docker-compose.yml
+```

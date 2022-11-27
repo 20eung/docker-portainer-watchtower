@@ -75,7 +75,7 @@ $ sudo docker-compose up -d
 ## 4. Watchtower 설치
 
 ```
-$ mkdir -p /data/watchtower/
+$ sudo mkdir -p /data/watchtower/
 
 $ sudo vi /data/watchtower/docker-compose.yml
 

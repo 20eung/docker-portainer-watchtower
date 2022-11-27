@@ -1,4 +1,7 @@
-# Docker, Portainer, Watchtower 설정 방법
+# Docker, Portainer, Watch Tower 설치 방법
+
+- Portainer는 도커를 웹으로 관리하는 툴입니다.
+- Watch Tower는 도커 이미지를 자동으로 업데이트하는 관리 툴입니다.
 
 ## 0. 작업 환경
 
@@ -120,3 +123,11 @@ $ sudo docker-compose up -d
 └── watchtower
     └── docker-compose.yml
 ```
+
+***
+## 참고 URL
+
+- Ubuntu 20.04 Docker 설치하기: https://blog.dalso.org/linux/ubuntu-20-04-lts/13118
+- Docker 컨테이너 자동시작: https://help.iwinv.kr/manual/read.html?idx=572
+- Docker 이미지 자동 업데이트 툴 Watch Tower 설치하기: https://it-svr.com/docker-image-update-service-watchtower/
+- Docker를 Web에서 관리하는 Portainer 설치방법: https://www.wsgvet.com/ubuntu/120

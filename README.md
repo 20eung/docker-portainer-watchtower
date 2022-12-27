@@ -31,6 +31,13 @@ $ sudo apt install docker-compose -y
 
 ```
 
+> 도커 그룹에 사용자 추가
+
+```
+$ sudo usermod -aG docker $USER
+
+```
+
 ## 3. Portainer 설치
 
 ```

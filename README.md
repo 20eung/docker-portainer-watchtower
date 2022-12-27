@@ -57,16 +57,19 @@ services:
   portainer:
     image: portainer/portainer-ce:latest
     container_name: portainer
+    hostname: portainer
     restart: always
+    environment:
+      - TZ=Asia/Seoul
     security_opt:
       - no-new-privileges:true
     ports:
-      - 9443:9443
       - 8000:8000
+      - 9443:9443
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /data/portainer:/data
+      - ./data:/data
 
 volumes:
   portainer_data:

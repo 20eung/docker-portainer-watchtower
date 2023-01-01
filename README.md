@@ -113,7 +113,17 @@ $ cd /data/watchtower
 $ sudo docker-compose up -d
 ```
 
-## 5. 디렉토리 구조
+
+## 5. connect docker container
+
+```
+docker exec -it portainer /bin/sh
+
+docker exec -it watchtower /bin/sh
+```
+
+
+## 6. 디렉토리 구조
 
 ```
 /data

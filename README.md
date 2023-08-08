@@ -11,23 +11,23 @@
 ## 1. apt 업데이트
 
 ```
-$ sudo apt update
+sudo apt update
 
-$ sudo apt upgrade -y
+sudo apt upgrade -y
 ```
 
 ## 2. Docker 설치
 
 ```
-$ curl -fsSL https://get.docker.com -o get-docker.sh
+curl -fsSL https://get.docker.com -o get-docker.sh
 
-$ sudo sh get-docker.sh
+sudo sh get-docker.sh
 
-$ sudo systemctl enable docker
+sudo systemctl enable docker
 
-$ sudo service docker status
+sudo service docker status
 
-$ sudo apt install docker-compose -y
+sudo apt install docker-compose -y
 
 ```
 
@@ -41,16 +41,14 @@ $ sudo usermod -aG docker $USER
 ## 3. Portainer 설치
 
 ```
-$ cd /
-
-$ sudo mkdir -p /data/portainer
-
-$ sudo vi /data/portainer/docker-compose.yml
-
-$ cat /data/partainer/docker-compose.yml
+sudo mkdir -p /data/portainer
 ```
 
+### docker-compose.yml 파일 생성
+
 ```
+cat << EOF > /tmp/docker-compose.yml
+
 version: '3'
 
 services:
@@ -73,27 +71,35 @@ services:
 
 volumes:
   portainer_data:
+EOF
 ```
 
-```
-$ cd /data/portainer/
+### docker-compose.yml 파일 이동
 
-$ sudo docker-compose up -d
+```
+sudo mv /tmp/docker-compose.yml /data/portainer/docker-compose.yml
+```
+
+### docker 기동
+
+```
+cd /data/portainer/
+
+sudo docker-compose up -d
 ```
 
 
 ## 4. Watchtower 설치
 
 ```
-$ sudo mkdir -p /data/watchtower/
-
-$ sudo vi /data/watchtower/docker-compose.yml
-
-$ cat /data/watchtower/docker-compose.yml
+sudo mkdir -p /data/watchtower/
 
 ```
 
+### docker-compose.yml 파일 생성
+
 ```
+cat << EOF > /tmp/docker-compose.yml
 version: "3"
 services:
   watchtower:
@@ -105,12 +111,21 @@ services:
       TZ: Asia/Seoul
       WATCHTOWER_POLL_INTERVAL: 86400
     restart: unless-stopped
+EOF
 ```
 
-```
-$ cd /data/watchtower
+### docker-compose.yml 파일 이동
 
-$ sudo docker-compose up -d
+```
+sudo mv /tmp/docker-compose.yml /data/watchtower/docker-compose.yml
+```
+
+### docker 기동
+
+```
+cd /data/watchtower
+
+sudo docker-compose up -d
 ```
 
 

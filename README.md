@@ -38,6 +38,12 @@ $ sudo usermod -aG docker $USER
 
 ```
 
+> 도커 브릿지 네트워크 추가
+
+```
+$ sudo docker network create my_bridge
+```
+
 ## 3. Portainer 설치
 
 ```
@@ -65,12 +71,31 @@ services:
       - 8000:8000
       - 9443:9443
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /etc/localtime:/etc/localtime
+      - /var/run/docker.sock:/var/run/docker.sock
       - ./data:/data
+    command: -H tcp://portainer_agent:9001 --tlsskipverify
 
+agent:
+    image: portainer/agent:latest
+    container_name: portainer_agent
+    hostname: portainer_agent
+    restart: always
+    environment:
+      - TZ=Asia/Seoul
+    ports:
+      - 9001:9001
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
 volumes:
   portainer_data:
+
+networks:
+  default:
+    name: my_bridge
+    driver: bridge
 EOF
 ```
 
@@ -111,6 +136,11 @@ services:
       TZ: Asia/Seoul
       WATCHTOWER_POLL_INTERVAL: 86400
     restart: unless-stopped
+
+networks:
+  default:
+    name: my_bridge
+    driver: bridge
 EOF
 ```
 

@@ -76,7 +76,7 @@ services:
       - ./data:/data
     command: -H tcp://portainer_agent:9001 --tlsskipverify
 
-agent:
+  agent:
     image: portainer/agent:latest
     container_name: portainer_agent
     hostname: portainer_agent

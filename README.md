@@ -168,8 +168,8 @@ networks:
 
 ```
 # Telegram 설정
-TELEGRAM_BOT_TOKEN="561745752:AAGQcvoy9fTNgm7kIav-GvaPIIKx6WJeTRU"
-TELEGRAM_CHAT_ID="204089935"
+TELEGRAM_BOT_TOKEN="561745752:AAGQcvoy9fTNgm7kIav-GvaPIIKx6WJeTR~~~"
+TELEGRAM_CHAT_ID="204089935~~~"
 ```
 
 ### 도커 컨테이너 업데이트 메시지를 Telegram으로 전송하기 위한 설정

@@ -41,7 +41,7 @@ $ sudo usermod -aG docker $USER
 > 도커 브릿지 네트워크 추가
 
 ```
-$ sudo docker network create my_bridge
+$ sudo docker network create server-base-net
 ```
 
 ## 3. Portainer 설치

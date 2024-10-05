@@ -296,22 +296,31 @@ docker exec -it watchtower /bin/sh
 ## 6. 디렉토리 구조
 
 ```
-/data
-├── portainer
-│   ├── bin
-│   ├── certs
-│   │   ├── cert.pem
-│   │   └── key.pem
-│   ├── compose
+/data/
+├── portainer/
 │   ├── docker-compose.yml
-│   ├── docker_config
-│   │   └── config.json
-│   ├── portainer.db
-│   ├── portainer.key
-│   ├── portainer.pub
-│   └── tls
-└── watchtower
-    └── docker-compose.yml
+│   └── data/
+│       ├── bin/
+│       ├── certs/
+│       │   ├── cert.pem
+│       │   └── key.pem
+│       ├── chisel/
+│       │   └── private-key.pem
+│       ├── compose/
+│       ├── docker_config/
+│       │   └── config.json
+│       ├── tls/
+│       ├── portainer.db
+│       ├── portainer.key
+│       └── portainer.pub
+└── watchtower/
+    ├── docker-compose.yml
+    └── watchtower-notifier-custom/
+        ├── Dockerfile
+        └── scripts/
+            ├── monitor_watchtower.sh
+            ├── notify_telegram.sh
+            └── test_telegram.sh
 ```
 
 ***

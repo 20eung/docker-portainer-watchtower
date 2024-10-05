@@ -55,7 +55,7 @@ sudo mkdir -p /data/portainer
 ```
 cat << EOF > /tmp/docker-compose.yml
 
-version: '3'
+version: '3.8'
 
 services:
   portainer:
@@ -71,10 +71,11 @@ services:
       - 8000:8000
       - 9443:9443
     volumes:
-      - /etc/localtime:/etc/localtime
-      - /var/run/docker.sock:/var/run/docker.sock
       - ./data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
     command: -H tcp://portainer_agent:9001 --tlsskipverify
+    networks:
+      - server-base-net  # 외부 네트워크 연결
 
   agent:
     image: portainer/agent:latest
@@ -86,16 +87,15 @@ services:
     ports:
       - 9001:9001
     volumes:
-      - /etc/localtime:/etc/localtime
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/lib/docker/volumes:/var/lib/docker/volumes
-volumes:
-  portainer_data:
+    networks:
+      - server-base-net  # 외부 네트워크 연결
 
 networks:
-  default:
-    name: my_bridge
-    driver: bridge
+  server-base-net:
+    external: true
+
 EOF
 ```
 
@@ -125,22 +125,24 @@ sudo mkdir -p /data/watchtower/
 
 ```
 cat << EOF > /tmp/docker-compose.yml
-version: "3"
+version: "3.8"
 services:
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Seoul
+      - WATCHTOWER_POLL_INTERVAL=86400
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      TZ: Asia/Seoul
-      WATCHTOWER_POLL_INTERVAL: 86400
-    restart: unless-stopped
+    networks:
+      - server-base-net  # 외부 네트워크 연결
 
 networks:
-  default:
-    name: my_bridge
-    driver: bridge
+  server-base-net:
+    external: true
+
 EOF
 ```
 
